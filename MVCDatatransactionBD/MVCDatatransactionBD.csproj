@@ -70,6 +70,7 @@
       <DependentUpon>MVCDatatransactionModel.tt</DependentUpon>
     </Compile>
     <Compile Include="TransaccionBD.cs" />
+    <Compile Include="TransaccionMetadata.cs" />
     <Compile Include="Transaccion_List_Result.cs">
       <DependentUpon>MVCDatatransactionModel.tt</DependentUpon>
     </Compile>
