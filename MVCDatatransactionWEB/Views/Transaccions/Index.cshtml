@@ -1,0 +1,63 @@
+﻿@model IEnumerable<MVCDatatransactionBD.Transaccion>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.tra_accountnumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tra_beneficiaryname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tra_bankname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tra_SWIFTCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tra_amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tra_datetime)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.tra_accountnumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tra_beneficiaryname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tra_bankname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tra_SWIFTCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tra_amount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tra_datetime)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.tra_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.tra_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.tra_id })
+        </td>
+    </tr>
+}
+
+</table>
