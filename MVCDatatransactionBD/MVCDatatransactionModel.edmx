@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MVCDatatransactionModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Transaccion">
+          <Key>
+            <PropertyRef Name="tra_id" />
+          </Key>
+          <Property Name="tra_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tra_accountnumber" Type="varchar" MaxLength="12" />
+          <Property Name="tra_beneficiaryname" Type="varchar" MaxLength="100" />
+          <Property Name="tra_bankname" Type="varchar" MaxLength="100" />
+          <Property Name="tra_SWIFTCode" Type="varchar" MaxLength="11" />
+          <Property Name="tra_amount" Type="int" />
+          <Property Name="tra_datetime" Type="datetime" />
+        </EntityType>
+        <Function Name="Transaccion_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tra_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Transaccion_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tra_accountnumber" Type="varchar" Mode="In" />
+          <Parameter Name="tra_beneficiaryname" Type="varchar" Mode="In" />
+          <Parameter Name="tra_bankname" Type="varchar" Mode="In" />
+          <Parameter Name="tra_SWIFTCode" Type="varchar" Mode="In" />
+          <Parameter Name="tra_amount" Type="int" Mode="In" />
+          <Parameter Name="tra_datetime" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="Transaccion_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tra_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Transaccion_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tra_id" Type="int" Mode="In" />
+          <Parameter Name="tra_accountnumber" Type="varchar" Mode="In" />
+          <Parameter Name="tra_beneficiaryname" Type="varchar" Mode="In" />
+          <Parameter Name="tra_bankname" Type="varchar" Mode="In" />
+          <Parameter Name="tra_SWIFTCode" Type="varchar" Mode="In" />
+          <Parameter Name="tra_amount" Type="int" Mode="In" />
+          <Parameter Name="tra_datetime" Type="datetime" Mode="In" />
+        </Function>
+        <EntityContainer Name="MVCDatatransactionModelStoreContainer">
+          <EntitySet Name="Transaccion" EntityType="Self.Transaccion" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MVCDatatransactionModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Transaccion">
+          <Key>
+            <PropertyRef Name="tra_id" />
+          </Key>
+          <Property Name="tra_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tra_accountnumber" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="tra_beneficiaryname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="tra_bankname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="tra_SWIFTCode" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="tra_amount" Type="Int32" />
+          <Property Name="tra_datetime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="MVCDatatransactionEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Transaccion" EntityType="Self.Transaccion" />
+          <FunctionImport Name="Transaccion_Delete">
+            <Parameter Name="tra_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Transaccion_Insert">
+            <Parameter Name="tra_accountnumber" Mode="In" Type="String" />
+            <Parameter Name="tra_beneficiaryname" Mode="In" Type="String" />
+            <Parameter Name="tra_bankname" Mode="In" Type="String" />
+            <Parameter Name="tra_SWIFTCode" Mode="In" Type="String" />
+            <Parameter Name="tra_amount" Mode="In" Type="Int32" />
+            <Parameter Name="tra_datetime" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="Transaccion_List" ReturnType="Collection(MVCDatatransactionModel.Transaccion_List_Result)">
+            <Parameter Name="tra_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Transaccion_Update">
+            <Parameter Name="tra_id" Mode="In" Type="Int32" />
+            <Parameter Name="tra_accountnumber" Mode="In" Type="String" />
+            <Parameter Name="tra_beneficiaryname" Mode="In" Type="String" />
+            <Parameter Name="tra_bankname" Mode="In" Type="String" />
+            <Parameter Name="tra_SWIFTCode" Mode="In" Type="String" />
+            <Parameter Name="tra_amount" Mode="In" Type="Int32" />
+            <Parameter Name="tra_datetime" Mode="In" Type="DateTime" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="Transaccion_List_Result">
+          <Property Type="Int32" Name="tra_id" Nullable="false" />
+          <Property Type="String" Name="tra_accountnumber" Nullable="true" MaxLength="12" />
+          <Property Type="String" Name="tra_beneficiaryname" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="tra_bankname" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="tra_SWIFTCode" Nullable="true" MaxLength="11" />
+          <Property Type="Int32" Name="tra_amount" Nullable="true" />
+          <Property Type="DateTime" Name="tra_datetime" Nullable="true" Precision="23" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MVCDatatransactionModelStoreContainer" CdmEntityContainer="MVCDatatransactionEntities">
+          <EntitySetMapping Name="Transaccion">
+            <EntityTypeMapping TypeName="MVCDatatransactionModel.Transaccion">
+              <MappingFragment StoreEntitySet="Transaccion">
+                <ScalarProperty Name="tra_id" ColumnName="tra_id" />
+                <ScalarProperty Name="tra_accountnumber" ColumnName="tra_accountnumber" />
+                <ScalarProperty Name="tra_beneficiaryname" ColumnName="tra_beneficiaryname" />
+                <ScalarProperty Name="tra_bankname" ColumnName="tra_bankname" />
+                <ScalarProperty Name="tra_SWIFTCode" ColumnName="tra_SWIFTCode" />
+                <ScalarProperty Name="tra_amount" ColumnName="tra_amount" />
+                <ScalarProperty Name="tra_datetime" ColumnName="tra_datetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Transaccion_Delete" FunctionName="MVCDatatransactionModel.Store.Transaccion_Delete" />
+          <FunctionImportMapping FunctionImportName="Transaccion_Insert" FunctionName="MVCDatatransactionModel.Store.Transaccion_Insert" />
+          <FunctionImportMapping FunctionImportName="Transaccion_List" FunctionName="MVCDatatransactionModel.Store.Transaccion_List">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVCDatatransactionModel.Transaccion_List_Result">
+                <ScalarProperty Name="tra_id" ColumnName="tra_id" />
+                <ScalarProperty Name="tra_accountnumber" ColumnName="tra_accountnumber" />
+                <ScalarProperty Name="tra_beneficiaryname" ColumnName="tra_beneficiaryname" />
+                <ScalarProperty Name="tra_bankname" ColumnName="tra_bankname" />
+                <ScalarProperty Name="tra_SWIFTCode" ColumnName="tra_SWIFTCode" />
+                <ScalarProperty Name="tra_amount" ColumnName="tra_amount" />
+                <ScalarProperty Name="tra_datetime" ColumnName="tra_datetime" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Transaccion_Update" FunctionName="MVCDatatransactionModel.Store.Transaccion_Update" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
