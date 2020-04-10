@@ -1,8 +1,11 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    font-family: 'Inconsolata', monospace;
 }
-
+.control-label {
+    font-weight: normal;
+}
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
@@ -21,4 +24,24 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+th{
+    background-color:#f2f3e5;
+}
+
+/*Formato a los botones de paginación de la tabla*/
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    padding: 0px;
+    margin-left: 0px;
+    display: inline;
+    border: 0px;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+        border: 0px;
+}
+
+table.dataTable thead th, table.dataTable thead td {
+    padding: 10px 18px;
+    border-bottom: 0px solid #111;
 }

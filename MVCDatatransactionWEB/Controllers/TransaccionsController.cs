@@ -20,6 +20,30 @@ namespace MVCDatatransactionWEB.Controllers
             return View(db.Transaccion.ToList());
         }
 
+
+        public ActionResult GetData()
+        {
+            List<Transaccion> Crud = db.Transaccion.ToList();
+            return Json(new { data = Crud }, JsonRequestBehavior.AllowGet);
+
+
+        }
+
+
+        [HttpGet]
+        public ActionResult Postdata(int id)
+        {
+            return View();
+        }
+        
+        [HttpPost]
+        public ActionResult Postdata()
+        {
+            return View();
+        }
+
+
+
         // GET: Transaccions/Details/5
         public ActionResult Details(int? id)
         {
