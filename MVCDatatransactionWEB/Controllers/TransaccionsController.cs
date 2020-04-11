@@ -14,10 +14,9 @@ namespace MVCDatatransactionWEB.Controllers
     {
         private MVCDatatransactionEntities db = new MVCDatatransactionEntities();
 
-        // GET: Transaccions
         public ActionResult Index()
         {
-            return View(db.Transaccion.ToList());
+            return View();
         }
 
 
@@ -25,21 +24,75 @@ namespace MVCDatatransactionWEB.Controllers
         {
             List<Transaccion> Crud = db.Transaccion.ToList();
             return Json(new { data = Crud }, JsonRequestBehavior.AllowGet);
+        }
 
 
+        /// <summary>
+        /// Json Para Guardar los Registros en la tabla
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public JsonResult PostData(Transaccion data)
+        {
+            string Respuesta = string.Empty;
+            if (data.tra_id > 0)
+            {
+                Transaccion datTransaccion = new Transaccion();
+                if (ModelState.IsValid)
+                {
+                    datTransaccion = data;
+                    db.Entry(datTransaccion).State = EntityState.Modified;
+                    db.SaveChanges();
+                    Respuesta = "success";
+                }
+                else
+                {
+                    Respuesta = "Debe registrar información";
+                }
+            }
+            else
+            {
+                Transaccion datTransaccion = new Transaccion();
+                if (ModelState.IsValid)
+                {
+                    datTransaccion = data;
+                    db.Transaccion.Add(datTransaccion);
+                    db.SaveChanges();
+                    Respuesta = "success";
+                }
+                else
+                {
+                    Respuesta = "Debe registrar información";
+                }
+
+            }
+
+
+
+            return Json(Respuesta, JsonRequestBehavior.AllowGet);
+        }
+
+
+        /// <summary>
+        ///Json para eliminar registros
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public JsonResult DeleteRow(int id)
+        {
+            Transaccion transaccion = db.Transaccion.Find(id);
+            db.Transaccion.Remove(transaccion);
+            db.SaveChanges();
+            return Json("success", JsonRequestBehavior.AllowGet);
         }
 
 
         [HttpGet]
-        public ActionResult Postdata(int id)
+        public ActionResult GetEdit(int id)
         {
-            return View();
-        }
-        
-        [HttpPost]
-        public ActionResult Postdata()
-        {
-            return View();
+
+            Transaccion transaccion = db.Transaccion.Find(id);
+            return Json(transaccion, JsonRequestBehavior.AllowGet);
         }
 
 

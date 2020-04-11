@@ -1,8 +1,63 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
-    font-family: 'Inconsolata', monospace;
+    font-family: 'PT Sans', sans-serif;
 }
+
+
+
+/*Boton Cerrar Ventana*/
+
+.close {
+    float: right;
+    font-size: 21px;
+    font-weight: bold;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    filter: alpha(opacity=20);
+    opacity: 0.6;
+}
+
+.boxclose {
+    display: block;
+    box-sizing: border-box;
+    width: 20px;
+    height: 20px;
+    border-width: 3px;
+    border-style: solid;
+    border-color: red;
+    border-radius: 100%;
+    background: -webkit-linear-gradient(-45deg, transparent 0%, transparent 46%, white 46%, white 56%,transparent 56%, transparent 100%), -webkit-linear-gradient(45deg, transparent 0%, transparent 46%, white 46%, white 56%,transparent 56%, transparent 100%);
+    background-color: red;
+    box-shadow: 0px 0px 5px 2px white;
+    transition: all 0.3s ease;
+}
+
+.modal.in .modal-dialog {
+    margin-top: 100px;
+}
+
+.modal-header {
+    background-color: #6aa01c;
+    color: #fff;
+    border-color: #6aa01c;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px 5px 0px 0px;
+}
+
+.modal-footer {
+    padding: 15px;
+    border-top: 1px solid #e5e5e5;
+    text-align: right;
+}
+
+.form-horizontal .control-label {
+    text-align: left;
+}
+
+
 .control-label {
     font-weight: normal;
 }
@@ -23,7 +78,12 @@
 input,
 select,
 textarea {
-    max-width: 280px;
+    max-width: 95%;
+}
+
+
+table.dataTable {
+    border: none !important;
 }
 
 th{
