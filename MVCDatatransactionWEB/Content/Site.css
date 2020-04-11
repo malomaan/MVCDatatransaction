@@ -1,7 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
-    font-family: 'PT Sans', sans-serif;
+    font-family: 'Oxygen', sans-serif;
 }
 
 
@@ -32,6 +32,12 @@
     background-color: red;
     box-shadow: 0px 0px 5px 2px white;
     transition: all 0.3s ease;
+}
+
+/*Boton Grid*/
+.btn-grid {
+    width: 80px;
+    font-size: 12px;
 }
 
 .modal.in .modal-dialog {
@@ -86,6 +92,10 @@ table.dataTable {
     border: none !important;
 }
 
+.row {
+    margin-right: 0px;
+    margin-left: -15px;
+}
 th{
     background-color:#f2f3e5;
 }
@@ -104,4 +114,41 @@ th{
 table.dataTable thead th, table.dataTable thead td {
     padding: 10px 18px;
     border-bottom: 0px solid #111;
+}
+
+/*Formato Personalizado de Tabla*/
+
+table {
+    color: #333;
+    font-family: Helvetica, Arial, sans-serif;
+    width: 640px;
+    border-collapse: collapse;
+}
+
+td, th {
+    border: 1px solid transparent;
+    height: 30px;
+}
+
+th {
+    background: #dfefd7;
+    font-weight: bold;
+}
+
+td {
+    background: #FAFAFA;
+    text-align: left;
+}
+
+tr:nth-child(even) td {
+    background: #F1F1F1;
+}
+
+tr:nth-child(odd) td {
+    background: #FEFEFE;
+}
+
+tr td:hover {
+    background: #666;
+    color: #FFF;
 }

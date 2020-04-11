@@ -13,13 +13,19 @@ namespace MVCDatatransactionWEB.Controllers
     public class TransaccionsController : Controller
     {
         private MVCDatatransactionEntities db = new MVCDatatransactionEntities();
-
+        /// <summary>
+        /// Muesta la plantilla principal de List y Create Update
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
             return View();
         }
 
-
+        /// <summary>
+        /// Obtiene los Datos para llenar el List
+        /// </summary>
+        /// <returns></returns>
         public ActionResult GetData()
         {
             List<Transaccion> Crud = db.Transaccion.ToList();
@@ -32,6 +38,7 @@ namespace MVCDatatransactionWEB.Controllers
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
+        [HttpPost]
         public JsonResult PostData(Transaccion data)
         {
             string Respuesta = string.Empty;
@@ -87,6 +94,12 @@ namespace MVCDatatransactionWEB.Controllers
         }
 
 
+        /// <summary>
+        /// Obtiene los datos del registro Editado
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        
         [HttpGet]
         public ActionResult GetEdit(int id)
         {
@@ -94,104 +107,7 @@ namespace MVCDatatransactionWEB.Controllers
             Transaccion transaccion = db.Transaccion.Find(id);
             return Json(transaccion, JsonRequestBehavior.AllowGet);
         }
-
-
-
-        // GET: Transaccions/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Transaccion transaccion = db.Transaccion.Find(id);
-            if (transaccion == null)
-            {
-                return HttpNotFound();
-            }
-            return View(transaccion);
-        }
-
-        // GET: Transaccions/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Transaccions/Create
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "tra_id,tra_accountnumber,tra_beneficiaryname,tra_bankname,tra_SWIFTCode,tra_amount,tra_datetime")] Transaccion transaccion)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Transaccion.Add(transaccion);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(transaccion);
-        }
-
-        // GET: Transaccions/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Transaccion transaccion = db.Transaccion.Find(id);
-            if (transaccion == null)
-            {
-                return HttpNotFound();
-            }
-            return View(transaccion);
-        }
-
-        // POST: Transaccions/Edit/5
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "tra_id,tra_accountnumber,tra_beneficiaryname,tra_bankname,tra_SWIFTCode,tra_amount,tra_datetime")] Transaccion transaccion)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(transaccion).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(transaccion);
-        }
-
-        // GET: Transaccions/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Transaccion transaccion = db.Transaccion.Find(id);
-            if (transaccion == null)
-            {
-                return HttpNotFound();
-            }
-            return View(transaccion);
-        }
-
-        // POST: Transaccions/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Transaccion transaccion = db.Transaccion.Find(id);
-            db.Transaccion.Remove(transaccion);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
+  
         protected override void Dispose(bool disposing)
         {
             if (disposing)
