@@ -4,7 +4,16 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MVCDatatransactionModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="MVCDatatransactionModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Pais">
+          <Key>
+            <PropertyRef Name="pai_codigo" />
+          </Key>
+          <Property Name="pai_codigo" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="pai_nombre" Type="varchar" MaxLength="250" />
+          <Property Name="pai_codigointernacional" Type="varchar" MaxLength="20" />
+          <Property Name="pai_predeterminado" Type="bit" />
+        </EntityType>
         <EntityType Name="Transaccion">
           <Key>
             <PropertyRef Name="tra_id" />
@@ -17,6 +26,24 @@
           <Property Name="tra_amount" Type="int" />
           <Property Name="tra_datetime" Type="datetime" />
         </EntityType>
+        <Function Name="Pais_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pai_codigo" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Pais_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pai_codigo" Type="varchar" Mode="In" />
+          <Parameter Name="pai_nombre" Type="varchar" Mode="In" />
+          <Parameter Name="pai_codigointernacional" Type="varchar" Mode="In" />
+          <Parameter Name="pai_predeterminado" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="Pais_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pai_codigo" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Pais_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pai_codigo" Type="varchar" Mode="In" />
+          <Parameter Name="pai_nombre" Type="varchar" Mode="In" />
+          <Parameter Name="pai_codigointernacional" Type="varchar" Mode="In" />
+          <Parameter Name="pai_predeterminado" Type="bit" Mode="In" />
+        </Function>
         <Function Name="Transaccion_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="tra_id" Type="int" Mode="In" />
         </Function>
@@ -41,10 +68,10 @@
           <Parameter Name="tra_datetime" Type="datetime" Mode="In" />
         </Function>
         <EntityContainer Name="MVCDatatransactionModelStoreContainer">
+          <EntitySet Name="Pais" EntityType="Self.Pais" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Transaccion" EntityType="Self.Transaccion" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MVCDatatransactionModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -63,7 +90,7 @@
         <EntityContainer Name="MVCDatatransactionEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Transaccion" EntityType="Self.Transaccion" />
           <FunctionImport Name="Transaccion_Delete">
-            <Parameter Name="tra_id" Mode="In" Type="Int32" />
+          <Parameter Name="tra_id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Transaccion_Insert">
             <Parameter Name="tra_accountnumber" Mode="In" Type="String" />
@@ -74,7 +101,7 @@
             <Parameter Name="tra_datetime" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="Transaccion_List" ReturnType="Collection(MVCDatatransactionModel.Transaccion_List_Result)">
-            <Parameter Name="tra_id" Mode="In" Type="Int32" />
+          <Parameter Name="tra_id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Transaccion_Update">
             <Parameter Name="tra_id" Mode="In" Type="Int32" />
@@ -85,6 +112,25 @@
             <Parameter Name="tra_amount" Mode="In" Type="Int32" />
             <Parameter Name="tra_datetime" Mode="In" Type="DateTime" />
           </FunctionImport>
+          <EntitySet Name="Pais" EntityType="MVCDatatransactionModel.Pais" />
+          <FunctionImport Name="Pais_Delete">
+            <Parameter Name="pai_codigo" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Pais_Insert">
+            <Parameter Name="pai_codigo" Mode="In" Type="String" />
+            <Parameter Name="pai_nombre" Mode="In" Type="String" />
+            <Parameter Name="pai_codigointernacional" Mode="In" Type="String" />
+            <Parameter Name="pai_predeterminado" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="Pais_List" ReturnType="Collection(MVCDatatransactionModel.Pais_List_Result)">
+            <Parameter Name="pai_codigo" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Pais_Update">
+            <Parameter Name="pai_codigo" Mode="In" Type="String" />
+            <Parameter Name="pai_nombre" Mode="In" Type="String" />
+            <Parameter Name="pai_codigointernacional" Mode="In" Type="String" />
+            <Parameter Name="pai_predeterminado" Mode="In" Type="Boolean" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="Transaccion_List_Result">
           <Property Type="Int32" Name="tra_id" Nullable="false" />
@@ -94,6 +140,21 @@
           <Property Type="String" Name="tra_SWIFTCode" Nullable="true" MaxLength="11" />
           <Property Type="Int32" Name="tra_amount" Nullable="true" />
           <Property Type="DateTime" Name="tra_datetime" Nullable="true" Precision="23" />
+        </ComplexType>
+        <EntityType Name="Pais">
+          <Key>
+            <PropertyRef Name="pai_codigo" />
+          </Key>
+          <Property Name="pai_codigo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="pai_nombre" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="pai_codigointernacional" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="pai_predeterminado" Type="Boolean" />
+        </EntityType>
+        <ComplexType Name="Pais_List_Result">
+          <Property Type="String" Name="pai_codigo" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="pai_nombre" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="pai_codigointernacional" Nullable="true" MaxLength="20" />
+          <Property Type="Boolean" Name="pai_predeterminado" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -130,6 +191,29 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="Transaccion_Update" FunctionName="MVCDatatransactionModel.Store.Transaccion_Update" />
+          <EntitySetMapping Name="Pais">
+            <EntityTypeMapping TypeName="MVCDatatransactionModel.Pais">
+              <MappingFragment StoreEntitySet="Pais">
+                <ScalarProperty Name="pai_predeterminado" ColumnName="pai_predeterminado" />
+                <ScalarProperty Name="pai_codigointernacional" ColumnName="pai_codigointernacional" />
+                <ScalarProperty Name="pai_nombre" ColumnName="pai_nombre" />
+                <ScalarProperty Name="pai_codigo" ColumnName="pai_codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Pais_Delete" FunctionName="MVCDatatransactionModel.Store.Pais_Delete" />
+          <FunctionImportMapping FunctionImportName="Pais_Insert" FunctionName="MVCDatatransactionModel.Store.Pais_Insert" />
+          <FunctionImportMapping FunctionImportName="Pais_List" FunctionName="MVCDatatransactionModel.Store.Pais_List">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVCDatatransactionModel.Pais_List_Result">
+                <ScalarProperty Name="pai_codigo" ColumnName="pai_codigo" />
+                <ScalarProperty Name="pai_nombre" ColumnName="pai_nombre" />
+                <ScalarProperty Name="pai_codigointernacional" ColumnName="pai_codigointernacional" />
+                <ScalarProperty Name="pai_predeterminado" ColumnName="pai_predeterminado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Pais_Update" FunctionName="MVCDatatransactionModel.Store.Pais_Update" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

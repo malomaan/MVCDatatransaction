@@ -65,6 +65,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MVCDatatransactionModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Pais.cs">
+      <DependentUpon>MVCDatatransactionModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pais_List_Result.cs">
+      <DependentUpon>MVCDatatransactionModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Transaccion.cs">
       <DependentUpon>MVCDatatransactionModel.tt</DependentUpon>

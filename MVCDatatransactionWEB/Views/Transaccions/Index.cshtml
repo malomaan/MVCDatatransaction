@@ -126,7 +126,7 @@
             $('#submitdata').show();
             $('#updatedata').hide();
             $("#tra_id").remove();
-            $("#tra_accountnumber").val("");
+            $("#tra_accountnumber").val(null);
             $("#tra_beneficiaryname").val("");
             $("#tra_bankname").val("");
             $("#tra_SWIFTCode").val("");
@@ -137,7 +137,7 @@
             return false;
         }
         function btnsubmit() {
-            if ($("#accountnumber").val() = null) {
+            if ($("#tra_accountnumber").val() == null) {
                 alert("Ingrese el numero de cuenta");
                 $("#accountnumber").focus();
             }
@@ -175,7 +175,6 @@
                 })
             }
         }
-
         function deleterow(id) {
         if (confirm("Deseas eliminar este registro")) {
             $.ajax({
@@ -191,7 +190,7 @@
                             globalPosition: 'top center'
                         });
 
-                        setTimeout(function () { window.location.reload(); }, 1000);
+                        setTimeout(function () { window.location.reload(); }, 900);
                     }
                 },
                 error: function (msg) {
@@ -245,11 +244,11 @@
                         @Html.ValidationSummary("", new { @class = "text-danger" })
                         @Html.HiddenFor(model => model.tra_id)
                         <div class="form-group">
-                            @Html.LabelFor(model => model.tra_accountnumber, htmlAttributes: new { id= "tra_accountnumber", @class = "control-label col-md-2"  })
+                            @Html.LabelFor(model => model.tra_accountnumber, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-credit-card"></i></span>
-                                    @Html.EditorFor(model => model.tra_accountnumber, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.EditorFor(model => model.tra_accountnumber, new { htmlAttributes = new { @class = "form-control", placeholder = Html.DisplayNameFor(x => x.tra_accountnumber) + " *" } })
                                     @Html.ValidationMessageFor(model => model.tra_accountnumber, "", new { @class = "text-danger" })
                                 </div>
                             </div>

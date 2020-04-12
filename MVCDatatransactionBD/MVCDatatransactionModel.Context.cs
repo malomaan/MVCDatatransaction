@@ -28,6 +28,7 @@ namespace MVCDatatransactionBD
         }
     
         public virtual DbSet<Transaccion> Transaccion { get; set; }
+        public virtual DbSet<Pais> Pais { get; set; }
     
         public virtual int Transaccion_Delete(Nullable<int> tra_id)
         {
@@ -107,6 +108,66 @@ namespace MVCDatatransactionBD
                 new ObjectParameter("tra_datetime", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Transaccion_Update", tra_idParameter, tra_accountnumberParameter, tra_beneficiarynameParameter, tra_banknameParameter, tra_SWIFTCodeParameter, tra_amountParameter, tra_datetimeParameter);
+        }
+    
+        public virtual int Pais_Delete(string pai_codigo)
+        {
+            var pai_codigoParameter = pai_codigo != null ?
+                new ObjectParameter("pai_codigo", pai_codigo) :
+                new ObjectParameter("pai_codigo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Pais_Delete", pai_codigoParameter);
+        }
+    
+        public virtual int Pais_Insert(string pai_codigo, string pai_nombre, string pai_codigointernacional, Nullable<bool> pai_predeterminado)
+        {
+            var pai_codigoParameter = pai_codigo != null ?
+                new ObjectParameter("pai_codigo", pai_codigo) :
+                new ObjectParameter("pai_codigo", typeof(string));
+    
+            var pai_nombreParameter = pai_nombre != null ?
+                new ObjectParameter("pai_nombre", pai_nombre) :
+                new ObjectParameter("pai_nombre", typeof(string));
+    
+            var pai_codigointernacionalParameter = pai_codigointernacional != null ?
+                new ObjectParameter("pai_codigointernacional", pai_codigointernacional) :
+                new ObjectParameter("pai_codigointernacional", typeof(string));
+    
+            var pai_predeterminadoParameter = pai_predeterminado.HasValue ?
+                new ObjectParameter("pai_predeterminado", pai_predeterminado) :
+                new ObjectParameter("pai_predeterminado", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Pais_Insert", pai_codigoParameter, pai_nombreParameter, pai_codigointernacionalParameter, pai_predeterminadoParameter);
+        }
+    
+        public virtual ObjectResult<Pais_List_Result> Pais_List(string pai_codigo)
+        {
+            var pai_codigoParameter = pai_codigo != null ?
+                new ObjectParameter("pai_codigo", pai_codigo) :
+                new ObjectParameter("pai_codigo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Pais_List_Result>("Pais_List", pai_codigoParameter);
+        }
+    
+        public virtual int Pais_Update(string pai_codigo, string pai_nombre, string pai_codigointernacional, Nullable<bool> pai_predeterminado)
+        {
+            var pai_codigoParameter = pai_codigo != null ?
+                new ObjectParameter("pai_codigo", pai_codigo) :
+                new ObjectParameter("pai_codigo", typeof(string));
+    
+            var pai_nombreParameter = pai_nombre != null ?
+                new ObjectParameter("pai_nombre", pai_nombre) :
+                new ObjectParameter("pai_nombre", typeof(string));
+    
+            var pai_codigointernacionalParameter = pai_codigointernacional != null ?
+                new ObjectParameter("pai_codigointernacional", pai_codigointernacional) :
+                new ObjectParameter("pai_codigointernacional", typeof(string));
+    
+            var pai_predeterminadoParameter = pai_predeterminado.HasValue ?
+                new ObjectParameter("pai_predeterminado", pai_predeterminado) :
+                new ObjectParameter("pai_predeterminado", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Pais_Update", pai_codigoParameter, pai_nombreParameter, pai_codigointernacionalParameter, pai_predeterminadoParameter);
         }
     }
 }
