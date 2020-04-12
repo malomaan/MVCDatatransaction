@@ -68,6 +68,8 @@
     <Compile Include="Pais.cs">
       <DependentUpon>MVCDatatransactionModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="PaisBD.cs" />
+    <Compile Include="PaisMetadata.cs" />
     <Compile Include="Pais_List_Result.cs">
       <DependentUpon>MVCDatatransactionModel.tt</DependentUpon>
     </Compile>
